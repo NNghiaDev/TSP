@@ -1,7 +1,7 @@
 # Traveling Salesman Problem (TSP)
 
 ## 📌 Giới thiệu  
-Cho một tập các đỉnh và trọng số giữa chúng, hãy tìm **chu trình ngắn nhất** đi qua mỗi đỉnh đúng một lần và quay lại đỉnh xuất phát.
+Cho một tập các đỉnh và trọng số giữa chúng, tìm **chu trình ngắn nhất** đi qua mỗi đỉnh đúng một lần và quay lại đỉnh xuất phát.
 
 ## ⚙️ Phương pháp sử dụng
 Dự án này cài đặt thuật toán:
