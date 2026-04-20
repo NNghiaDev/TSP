@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#define N 25
+#define N 100
 #define INF 1000000000
 
 
