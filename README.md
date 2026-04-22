@@ -10,3 +10,4 @@ Dự án này cài đặt thuật toán:
 - Duyệt tất cả các khả năng
 - Cắt tỉa nhánh không tối ưu bằng **lower bound**
 - Tăng tốc đáng kể so với brute force(Sinh hoán vị thông thường)
+### 🔹 Sử dụng thư viện Graphviz để vẽ đồ thị, mô tả đường đi
