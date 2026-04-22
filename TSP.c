@@ -110,7 +110,62 @@ void init(int n, int path[], int final_path[], int check[], int matrix[N][N]) {
         }
     }
 }
+void paint_graph(int n,int matrix[N][N], int final_path[],const char *filename){
+    int matrixcp[N][N];
+    for(int i = 0; i < n; i++){
+        for(int j = 0; j < n; j++) matrixcp[i][j]=matrix[i][j];
+    }
 
+    FILE *f = fopen(filename, "w");
+    if (!f) {
+        printf("Khong the tao file DOT.\n");
+        return;
+    }
+
+    fprintf(f, "digraph G {\n");
+    fprintf(f, "    layout=circo;\n");
+    fprintf(f, "    overlap=false;\n");
+    fprintf(f, "    splines=curved;\n");
+    fprintf(f, "    outputorder=edgesfirst;\n");
+
+    fprintf(f, "    node [shape=circle, style=filled, fillcolor=\"lightyellow\", fontsize=12, width=0.5];\n");
+    fprintf(f, "    edge [fontsize=10, arrowsize=0.8];\n\n");
+
+    for (int i = 0; i < n; i++) {
+        fprintf(f, "    %d;\n", i + 1);
+    }
+    fprintf(f, "\n");
+
+    for(int i = 0; i < n; i++) {
+        matrixcp[final_path[i]][final_path[i+1]] = -1;
+    }
+
+    for(int i = 0; i < n; i++){
+        for(int j = 0; j < n; j++){
+            if(i == j) continue;
+            if(matrixcp[i][j] == INF) continue;
+            if(matrixcp[i][j] > -1){
+                fprintf(f,
+                    "    %d -> %d [label=\"%d\", color=gray90, fontcolor=gray85, penwidth=0.7];\n",
+                    i + 1, j + 1, matrix[i][j]);
+            }
+        }
+    }
+
+    for(int i = 0; i < n; i++){
+        int u = final_path[i];
+        int v = final_path[i+1];
+
+        fprintf(f,
+            "    %d -> %d [label=\"%d (%d)\", color=red, fontcolor=red, penwidth=4, arrowsize=1.2];\n",
+            u + 1, v + 1, matrix[u][v], i + 1);
+    }
+    fprintf(f, "    %d [fillcolor=lightgreen];\n", final_path[0] + 1);
+    fprintf(f, "    %d [fillcolor=orange];\n", final_path[n] + 1);
+
+    fprintf(f, "}\n");
+    fclose(f);
+}
 void readgraph(int m, int matrix[N][N]) {
     for (int i = 0; i < m; i++) {
         int u, v, w;
@@ -146,6 +201,6 @@ int main() {
     for (int i = 0; i <= n; i++) {
         printf("%d ", final_path[i] + 1);
     }
-
+    pain_graph(n, matrix, final_path, "graph.dot");
     return 0;
 }
