@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+#include <stdlib.h>
 #define N 100
 #define INF 1000000000
 
@@ -201,6 +201,7 @@ int main() {
     for (int i = 0; i <= n; i++) {
         printf("%d ", final_path[i] + 1);
     }
-    pain_graph(n, matrix, final_path, "graph.dot");
+    paint_graph(n, matrix, final_path, "graph.dot");
+    system("\"C:\\Program Files (x86)\\Graphviz\\bin\\dot.exe\" -Tpng graph.dot -o graph.png && start graph.png");
     return 0;
 }
